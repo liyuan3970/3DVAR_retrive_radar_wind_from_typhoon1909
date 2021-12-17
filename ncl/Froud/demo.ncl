@@ -7,7 +7,7 @@ filepath = "/home/liyuan3970/Data/demo4_run2/"
 f = addfile(filepath +"wrfout_d02_2019-08-09_060000.nc","r")
 lat_real = 28.80000
 lon_real = 120.90000
-time = 89
+time = 85
 
 
 ua  = wrf_user_getvar(f,"ua",time)   ; u on mass points
@@ -30,9 +30,12 @@ lono = (lon1-lon0)/159.0
 
 
 
-num_lat = floattoint((lat_real-lat0)/lato)
-num_lon = floattoint((lon_real-lon0)/lono)
-
+;num_lat = floattoint((lat_real-lat0)/lato)
+;num_lon = floattoint((lon_real-lon0)/lono)
+num_lat = 62;floattoint((lat_real-lat0)/lato)
+num_lon = 85;floattoint((lon_real-lon0)/lono)
+print(num_lat)
+print(num_lon)
 ;comput lat lon's number
 ;print(num_lat)
 

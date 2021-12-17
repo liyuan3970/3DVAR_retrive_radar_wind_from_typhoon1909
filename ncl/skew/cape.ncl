@@ -60,7 +60,8 @@ begin
   mcin  = cape2d(1,:,:)
   lcl   = cape2d(2,:,:)
   lfc   = cape2d(3,:,:)
-
+  f->lcl = lcl
+  f->lfc = lfc 
 
   opts = res                         
   opts@cnFillOn = True  
