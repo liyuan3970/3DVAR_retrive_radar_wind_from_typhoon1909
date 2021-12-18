@@ -19,7 +19,7 @@ twb = wrf_user_getvar(f,"twb",time)
 tc = wrf_user_getvar(f,"tc",time)
 heg = wrf_user_getvar(f,"z",time)
 
-printVarSummary(tc)
+printVarSummary(eth)
 
 ;print(tc&bottom_top)
 
@@ -37,30 +37,33 @@ num_lat = 62;floattoint((lat_real-lat0)/lato)
 num_lon = 85;floattoint((lon_real-lon0)/lono)
 
 
+low = 4;1849
+high = 12;4201
 
-
-
+g = 9.8
 z_point = z(:,num_lat,num_lon)
 eth_point = eth(:,num_lat,num_lon)
 dethz = center_finite_diff_n(eth_point, z_point,False,0,0)
 u_point = ua(:,num_lat,num_lon)
+v_point = ua(:,num_lat,num_lon)
+print(z_point(12))
 
-;h = 1388
-h = 1388
-;comput lat lon's number
-;print(num_lat)
-
-;print(num_lon)
-
-N2 = (9.8/eth_point)*dethz
-
-N = sqrt(abs(N2))
+ave_eth =  (eth_point(high)+eth_point(low))/2
+speed = (u_point(high)-u_point(low))*(u_point(high)-u_point(low)) + (v_point(high)-v_point(low))*(v_point(high)-v_point(low))
+dif_eth =(eth_point(high)-eth_point(low))
+dif_z =(z_point(high)-z_point(low))/1000
 
 
 
+Ri = (g/ave_eth)*(dif_eth*dif_z/speed)
+print(ave_eth)
+print(dif_eth)
+print(dif_z)
+print(speed)
 
-F = u_point/(h*sqrt(abs(N2)))
-;print(N)
-print(F)
 
+print(Ri)
+
+
+asciiwrite("data.txt",eth_point)
 end
