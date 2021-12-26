@@ -136,7 +136,8 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
         end if
         delete(indexes)
     end do
-    wks=gsn_open_wks("png", "/home/liyuan3970/3DVAR_retrive_radar_wind_from_typhoon1909/picture/scater")
+    ;wks=gsn_open_wks("png", "/home/liyuan3970/3DVAR_retrive_radar_wind_from_typhoon1909/picture/scater")
+     wks=gsn_open_wks("png", "scater")
     ;gsn_define_colormap(wks, "WhViBlGrYeOrRe")
     mpres=True
     mpres@gsnFrame=False
