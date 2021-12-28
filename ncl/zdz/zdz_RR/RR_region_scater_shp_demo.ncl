@@ -33,7 +33,7 @@ begin
 
 ;---Will use this later for coloring the contours
   ;cmap = read_colormap_file("cmocean_turbid")
-  cmap = read_colormap_file("MPL_Greys")
+  cmap = read_colormap_file("MPL_YlGn")
   print(cmap)
 
 ;---Set some resources for contouring and mapping
@@ -120,7 +120,7 @@ print(RR_max)
 print(RR_min)
 itv=(RR_max-RR_min)/5
 arr=(/RR_min+itv,RR_min+2*itv,RR_min+3*itv,RR_min+4*itv/);我把所有温度均匀地用4个节点分配为5份
-colors = (/2,20,130,195,244/);5个水平需要5个颜色来代表
+colors = (/2,20,170,170,244/);5个水平需要5个颜色来代表
 num_markers=dimsizes(arr)+1;
 print(num_markers)
 lat_new = new((/num_markers,dimsizes(RR)/),float,-999);
@@ -149,6 +149,7 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
     ;wks=gsn_open_wks("png", "/home/liyuan3970/3DVAR_retrive_radar_wind_from_typhoon1909/picture/scater")
      wks=gsn_open_wks("png", "scater")
     ;gsn_define_colormap(wks, "WhViBlGrYeOrRe")
+    ;gsn_define_colormap(wks, "MPL_YlGn")
     mpres=True
     mpres@gsnFrame=False
     mpres@gsnDraw =False
@@ -157,7 +158,7 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
     mpres@mpMaxLatF=32
     mpres@mpMinLonF=118
     mpres@mpMaxLonF=124
-    mpres@tiMainString="1951 January China average temperature"
+    ;mpres@tiMainString="1951 January China average temperature"
     mpres@mpDataBaseVersion = "Ncarg4_1";这一步和下一步必须要，否则加载中国地图的时候会出错（找不到地图库）
     mpres@mpDataSetName="Earth..4";这步加上步再加下面那个China:state和Taiwan就可以画出中国轮廓边界了
     mpres@mpOutlineOn=True
