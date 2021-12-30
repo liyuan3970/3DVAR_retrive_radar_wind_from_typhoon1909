@@ -33,7 +33,7 @@ begin
 
 ;---Will use this later for coloring the contours
   ;cmap = read_colormap_file("cmocean_turbid")
-  cmap = read_colormap_file("MPL_YlGn")
+  cmap = read_colormap_file("cmocean_amp")
   print(cmap)
 
 ;---Set some resources for contouring and mapping
@@ -121,8 +121,9 @@ print(RR_min)
 itv=(RR_max-RR_min)/5
 arr=(/RR_min+itv,RR_min+2*itv,RR_min+3*itv,RR_min+4*itv/);我把所有温度均匀地用4个节点分配为5份
 colors = (/2,20,170,170,244/);5个水平需要5个颜色来代表
+colors = (/2,20,20,168,1/);5个水平需要5个颜色来代表
 num_markers=dimsizes(arr)+1;
-print(num_markers)
+;print(num_markers)
 lat_new = new((/num_markers,dimsizes(RR)/),float,-999);
 lon_new = new((/num_markers,dimsizes(RR)/),float,-999);
 labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
@@ -168,9 +169,9 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
     mpres@mpLandFillColor = "white"
     ;我看网上那个最多人转载的那个站点画气温分布等值线图，它用的兰伯特投影，我画了一下，左右纬度不对称，很奇怪，就放弃使用了。
 ;---Lat/lon limits for Colorado
-  minlat   = 27.1
-  maxlat   = 31.3
-  minlon   = 118
+  minlat   = 27.5
+  maxlat   = 30.3
+  minlon   = 120
   maxlon   = 123
 
 ;---Create topo map of Colorado
@@ -196,7 +197,9 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
     do i=1,num_markers-1
         if (.not.ismissing(lat_new(i,0))) then
             gsres@gsMarkerColor=colors(i)
-            gsres@gsMarkerThicknessF=i+1
+            gsres@gsMarkerThicknessF=4
+            gsres@gsMarkerSizeF = 10
+            gsres@gsMarkerIndex = 12
             gsn_polymarker(wks,map,lon_new(i,:),lat_new(i,:),gsres)
         end if
     end do
