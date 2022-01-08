@@ -30,7 +30,7 @@ RR_reshape = obj_anal_ic_deprecated(lon,lat,RR,olon,olat,rscan, False)  ;Creanm�
 printVarSummary(RR_reshape)
 
 
-    wks=gsn_open_wks("png","example_195101")
+    wks=gsn_open_wks("png","plot_obj")
     ;gsn_define_colormap(wks,cmap)      ; 
     res=True
     res@gsnAddCyclic=False             ;如果设置为真，则循环点被加入数据，如果数据不是循环的，就设置为假就可以。
