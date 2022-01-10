@@ -32,7 +32,8 @@ begin
   elev      = a->z({minlat:maxlat},{minlon:maxlon})
 
 ;---Will use this later for coloring the contours
-  cmap = read_colormap_file("OceanLakeLandSnow")
+  ;cmap = read_colormap_file("OceanLakeLandSnow")
+  cmap = read_colormap_file("MPL_gist_yarg")
 
 ;---Set some resources for contouring and mapping
   res                    = True
@@ -110,7 +111,7 @@ print(RR_max)
 print(RR_min)
 itv=(RR_max-RR_min)/5
 arr=(/RR_min+itv,RR_min+2*itv,RR_min+3*itv,RR_min+4*itv/);我把所有温度均匀地用4个节点分配为5份
-colors = (/2,20,130,195,244/);5个水平需要5个颜色来代表
+colors = (/0,20,130,195,244/);5个水平需要5个颜色来代表
 num_markers=dimsizes(arr)+1;
 print(num_markers)
 lat_new = new((/num_markers,dimsizes(RR)/),float,-999);

@@ -33,7 +33,8 @@ begin
 
 ;---Will use this later for coloring the contours
   ;cmap = read_colormap_file("cmocean_turbid")
-  cmap = read_colormap_file("cmocean_amp")
+  ;cmap = read_colormap_file("cmocean_amp")
+  cmap = read_colormap_file("MPL_gist_yarg")
   print(cmap)
 
 ;---Set some resources for contouring and mapping
@@ -120,8 +121,8 @@ print(RR_max)
 print(RR_min)
 itv=(RR_max-RR_min)/5
 arr=(/RR_min+itv,RR_min+2*itv,RR_min+3*itv,RR_min+4*itv/);我把所有温度均匀地用4个节点分配为5份
-colors = (/2,20,170,170,244/);5个水平需要5个颜色来代表
-colors = (/2,20,20,168,1/);5个水平需要5个颜色来代表
+;colors = (/2,20,170,170,244/);5个水平需要5个颜色来代表
+
 num_markers=dimsizes(arr)+1;
 ;print(num_markers)
 lat_new = new((/num_markers,dimsizes(RR)/),float,-999);
@@ -192,14 +193,18 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
   lnres@maxlat           = 31.1
   lnres@minlon           = 118.4
   lnres@maxlon           = 122.9
+  colors = (/2,68,68,180,229/);5个水平需要5个颜色来代表
+  sizes = (/15,15,15,30,30/)
+  
    dum = gsn_add_shapefile_polylines(wks,map,"/home/liyuan3970/Typhoon_LMQ/data/ncl/shp_demo/zhejiang.shp",lnres)
    draw(map)
     do i=1,num_markers-1
         if (.not.ismissing(lat_new(i,0))) then
             gsres@gsMarkerColor=colors(i)
             gsres@gsMarkerThicknessF=4
-            gsres@gsMarkerSizeF = 10
-            gsres@gsMarkerIndex = 12
+            ;gsres@gsMarkerSizeF = 25
+            gsres@gsMarkerSizeF = sizes(i)
+            gsres@gsMarkerIndex = 17
             gsn_polymarker(wks,map,lon_new(i,:),lat_new(i,:),gsres)
         end if
     end do
