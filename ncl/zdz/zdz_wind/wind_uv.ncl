@@ -1,9 +1,11 @@
 begin
+
+name = "0810_09"
 filepath = "/home/liyuan3970/3DVAR_retrive_radar_wind_from_typhoon1909/ncl/zdz/zdz_wind/"
 ; data=asciiread(filepath+"wind_0809_23.csv", (/2932,7/), "float")
 
 
-lines  = asciiread (filepath+"wind_0809_23.csv", -1, "string")
+lines  = asciiread (filepath+"wind_"+name+".csv", -1, "string")
 strs   = str_split_csv (lines, ",", 0) 
 strs@_FillValue = -9999.0   
 ;nums   = tofloat (strs) 
@@ -52,7 +54,7 @@ copy_VarCoords(u_shape,dv)
 
 
 
-fo = addfile("zdz_dv.nc","c")
+fo = addfile("zdz_dv"+name+".nc","c")
 fo->dv = dv
 printVarSummary(dv)
 
