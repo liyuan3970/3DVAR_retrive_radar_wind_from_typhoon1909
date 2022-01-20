@@ -51,12 +51,16 @@ begin
  
   res@cnLinesOn          = False        ; turn off contour lines
   res@cnLineLabelsOn     = False        ; turn off line labels
-  res@cnInfoLabelOn      = False        ; turn off info label
+  res@cnInfoLabelOn      = False        ; turn off info label\
+  ;res@lbLabelBarOn  = False
+  res@lbOrientation = "vertical"
   res@lbBoxLinesOn       = False        ; turn off labelbar box lines
-  res@lbTitleString      = "elevation (meters)"    ; add a labelbar title
+  ;res@lb
+  ;res@lbTitleString      = "elevation (meters)"    ; add a labelbar title
   res@lbTitleFontHeightF = 0.015
-  res@lbTitlePosition    = "Bottom"
-  res@pmLabelBarOrthogonalPosF = 0.15
+  ;res@lbTitlePosition    = "Bottom"
+  ;res@pmLabelBarOrthogonalPosF = 0.15
+  res@pmLabelBarSide = "Right"
   
 
 ;---Pick "nice" contour levels
@@ -91,6 +95,7 @@ begin
   res@pmTitleZone           = 4              ; move main title down a little
   res@mpOceanFillColor = 0
   res@mpLandFillColor = "white"
+  res@pmLabelBarSide = "Right"
 
 
 ;---Create map and return it.
@@ -117,8 +122,8 @@ RR@_FillValue=-9999   ;在数据说明里说了气温的缺测值是32766
 RR_max=max(RR)
 RR_min=min(RR)
 
-print(RR_max)
-print(RR_min)
+;print(RR_max)
+;print(RR_min)
 itv=(RR_max-RR_min)/5
 arr=(/RR_min+itv,RR_min+2*itv,RR_min+3*itv,RR_min+4*itv/);我把所有温度均匀地用4个节点分配为5份
 ;colors = (/2,20,170,170,244/);5个水平需要5个颜色来代表
@@ -170,10 +175,10 @@ labels = new(dimsizes(arr)+1,string);最后出现在图下方的标签
     mpres@mpLandFillColor = "white"
     ;我看网上那个最多人转载的那个站点画气温分布等值线图，它用的兰伯特投影，我画了一下，左右纬度不对称，很奇怪，就放弃使用了。
 ;---Lat/lon limits for Colorado
-  minlat   = 27.5
-  maxlat   = 30.3
-  minlon   = 120
-  maxlon   = 123
+  minlat   = 27.8;27.5
+  maxlat   = 29.5;30.3
+  minlon   = 120;120
+  maxlon   = 122.5;123
 
 ;---Create topo map of Colorado
   map = create_topo_map(wks,minlat,maxlat,minlon,maxlon)
