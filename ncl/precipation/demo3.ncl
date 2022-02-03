@@ -179,6 +179,8 @@ lon_value = fspan(minLon, maxLon, 5)
 
 
 printVarSummary(rain_tot)
+f = addfile("pre.nc","c")
+f->rain = rain_tot
 
  draw(plot)
  frame(wks)
