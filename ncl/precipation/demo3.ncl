@@ -10,10 +10,10 @@
 
 begin
  begTime = get_cpu_time()
- diri_constant= "/home/liyuan3970/Data/demo4_run2/"
- a  = addfile(diri_constant + "wrfout_d02_2019-08-09_060000.nc","r")
- lon2d = a->XLONG(0,:,:)
- lat2d = a->XLAT(0,:,:)
+ diri_constant= "/home/liyuan3971/Data/demo4_run2/"
+ a  = addfile(diri_constant + "wrfout_d03_2019-08-09_060000.nc","r")
+ lon3d = a->XLONG(0,:,:)
+ lat3d = a->XLAT(0,:,:)
  lat = lat2d(:,0)              ;; Xarray of latitudes
  lon = lon2d(0,:)              ;; Xarray of Longitudes
  times = wrf_user_list_times(a)
